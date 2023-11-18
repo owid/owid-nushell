@@ -20,3 +20,31 @@ source /path/to/owid-nushell/aliases.nu
 ```
 
 The you can access all commands by mnemonics that use the first letter per level, e.g. `owid api metadata` becomes `oam`
+
+### Mysql
+
+Using this requires the mysqlsh tool installed. Get in on the mac with `brew install mysql-shell`. Then add/edit a file in `~/.my.cnf` to put in the credential options (use `owid mysql profiles list`). You can add as many [client-] sections as you like to quickly switch between multiple mysql servers. For production, please make sure to use a read only account :)
+
+```
+[client]
+user = ***
+password = ***
+host = owid-live-db
+port = 3306
+database = live_grapher
+
+[client-prod-ro]
+user = ***
+password = ***
+host = owid-live-db
+port = 3306
+database = live_grapher
+
+[client-local]
+user = grapher
+password = grapher
+host = localhost
+port = 3307
+database = grapher
+
+```
