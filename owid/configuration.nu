@@ -5,7 +5,7 @@ const default = {
     apiUrl: "https://api.ourworldindata.org/v1/indicators/"
     cfUserId: null
     siteUrl: "https://ourworldindata.org/"
-    mysqlProfileHelper: "~/nu/owid/mysql-profile.py"
+    mysqlProfileHelper: "~/owid-nushell/owid/mysql-profile.py"
     mysqlProfile: "~/.my.cnf"
 }
 
