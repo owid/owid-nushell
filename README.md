@@ -27,11 +27,11 @@ Using this requires the mysqlsh tool installed. Get in on the mac with `brew ins
 
 ```
 [client]
-user = ***
-password = ***
-host = owid-live-db
-port = 3306
-database = live_grapher
+user = grapher
+password = grapher
+host = localhost
+port = 3307
+database = grapher
 
 [client-prod-ro]
 user = ***
