@@ -70,9 +70,9 @@ export def "table" [
     --where (-w): string # Where clause to filter rows
 ] {
     let baseQuery = $"select * from ($table_name)"
-    let withOptionalWhere = if $where != "" { $"($baseQuery) where ($where)" } else { $baseQuery }
-    let withOptionalLimit = if $limit > 0 { $"($baseQuery) limit ($limit)" } else { $withOptionalWhere }
-    let withOptionalOffset = if $offset > 0 { $"($withOptionalLimit) offset ($offset)" } else { $withOptionalLimit }
+    let withOptionalWhere = if $where != null and $where != "" { $"($baseQuery) where ($where)" } else { $baseQuery }
+    let withOptionalLimit = if $limit != null and $limit > 0 { $"($baseQuery) limit ($limit)" } else { $withOptionalWhere }
+    let withOptionalOffset = if $offset != null and $offset > 0 { $"($withOptionalLimit) offset ($offset)" } else { $withOptionalLimit }
     query $withOptionalOffset
 }
 
