@@ -4,12 +4,16 @@ This repository is a collection of custom commands that I found useful for worki
 
 To use these tools you need a recent version of [Nushell](http://www.nushell.sh/) installed (version 0.86 or higher at the time of writing this). Then load the scripts in the owid subfolder of this repo as an overlay like this:
 ```
+use /path/to/owid-nushell/owid
+
+or as an overlay (to easily get rid of it via "overlay hide")
+
 overlay use --prefix /path/to/owid-nushell/owid
 ```
 
-This will bring all the tools into scope as an overlay - you can hide all owid commands again with `overlay hide`.
-
 The commands all have tab complection and help texts, so just type `owid` and hit <tab> to see what the available commands are or browse the source.
+
+If you use the `overlay use` version, then all the commands are in scope as an overlay - you can then hide all owid commands again with `overlay hide`.
 
 ### Aliases file
 

@@ -67,6 +67,15 @@ export def chart-indicators [
     $indicators
 }
 
+# Fetches the indicators used in a chart and returns the metadata for each
+export def chart-indicator-metadata [
+    chartSlug: string # slug of the chart
+] {
+    let chartConfig = chart $chartSlug
+    let indicators = $chartConfig.dimensions | par-each { |it| metadata ($it.variableId | into int) | insert "property" $it.property }
+    $indicators
+}
+
 # Commands to interact with our static metadata and json file based API
 export def main [] {
 }
