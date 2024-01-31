@@ -22,3 +22,4 @@ export module mysql.nu
 export module r2.nu
 export module site.nu
 export module tailscale.nu
+export module spaces.nu
