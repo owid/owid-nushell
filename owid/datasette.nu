@@ -1,13 +1,29 @@
 use configuration.nu
 
+def unwrap_json_field [] {
+    let field = $in
+    if ((($field.value | describe) == "string") and (( $field.value | str starts-with '{') or ($field.value | str starts-with '['))) {
+         try { $field.value | from json } catch { $field.value }
+    } else { $field.value }
+}
+
+def unwrap_json_column [] {
+    $in
+    | transpose key value
+    | each { |field| $field | upsert "value" { $field | unwrap_json_field } }
+    | transpose -dr
+}
+
+def unwrap_json_columns [] {
+    $in | each { |row| $row | unwrap_json_column }
+}
+
 # Query the private OWID datasette instance with SQL
 export def query [
     sql: string # SQL query to run
-    jsonColumn? # Indicate a column as json which will return it as an object as opposed to a string
 ] {
     let conf = configuration get
     let args = { sql: $sql }
-    let args = if $jsonColumn != null { $args | insert "_json" $jsonColumn } else { $args}
     let escaped = $args | url build-query # | str replace --all '%20' '+' | str replace --all '%' '~'
     let url = $"($conf.datasetteUrl)owid.json?_shape=objects&($escaped)"
     let response = http get -e -f $url
@@ -20,7 +36,8 @@ export def query [
             end: $span.end
         }}
     }
-    return $response.body.rows
+    let rows = $response.body.rows
+    $rows | unwrap_json_columns
 }
 
 # Fetch the list of tables from the private OWID datasette instance
