@@ -1,3 +1,4 @@
+use configuration.nu
 # Fetch the sitemap and return a list of all URLs
 export def sitemap [] {
     let conf = configuration get
