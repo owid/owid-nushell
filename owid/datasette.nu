@@ -32,8 +32,7 @@ export def query [
         let span = (metadata $sql).span;
         error make {msg: $"Datasette returned an error \(status code was ($response.status))", label: {
             text: $response.body.error
-            start: $span.start
-            end: $span.end
+            span: $span
         }}
     }
     let rows = $response.body.rows
