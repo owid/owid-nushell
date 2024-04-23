@@ -32,6 +32,14 @@ export def "metadata simplify" [] {
     reject dimensions
 }
 
+export def "mim population" [] {
+    597930
+}
+
+export def "mim gdpPerCapita" [] {
+    735665
+}
+
 # Commands to quickly work with indicators
 export def main [] {
 
