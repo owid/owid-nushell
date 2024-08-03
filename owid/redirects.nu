@@ -9,9 +9,10 @@ export def fetch [] {
 # The check is a starts-with check because query params may or
 # may not be relevant in your case.
 export def "check" [
-    source: string
+    originalSource: string
     target: string
 ] {
+    mut source = $originalSource
     if $source == "" {
         error make {msg: "Source cannot be empty"}
     }

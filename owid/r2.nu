@@ -7,7 +7,7 @@ export def query [
 ] {
     let stdin = $in
     if ($env.owid.cfUserId == null or $env.owid.cfUserId == "") {
-        print 'Please run 'owid configure setup' and set a cfUserId'
+        print 'Please run `owid configure setup` and set a cfUserId'
     } else {
         if ((which aws | length) < 1) {
             print "Please install the aws cli tool"
