@@ -18,7 +18,7 @@ def unwrap_json_columns [] {
     $in | each { |row| $row | unwrap_json_column }
 }
 
-# Query the private OWID datasette instance with SQL
+# Query the OWID datasette instance with SQL
 export def query [
     sql: string # SQL query to run
 ] {
@@ -39,24 +39,24 @@ export def query [
     $rows | unwrap_json_columns
 }
 
-# Fetch the list of tables from the private OWID datasette instance
+# Fetch the list of tables from the OWID datasette instance
 export def tables [] {
     let conf = configuration get
     http get $"($conf.datasetteUrl)owid.json" | get tables
 }
 
-# Fetch the list of views from the private OWID datasette instance
+# Fetch the list of views from the OWID datasette instance
 export def views [] {
     let conf = configuration get
     http get $"($conf.datasetteUrl)owid.json" | get views
 }
 
-# Fetch the list of tables and views from the private OWID datasette instance
+# Fetch the list of tables and views from the OWID datasette instance
 export def targets [] {
     (tables | get name) ++ (views | get name)
 }
 
-# Fetch the list of columns for a given table from the private OWID datasette instance
+# Fetch the list of columns for a given table from the OWID datasette instance
 export def columns [
     name: string@targets # Name of the table to fetch columns for
 ] {

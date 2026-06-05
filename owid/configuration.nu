@@ -1,7 +1,7 @@
-const datasetteUrlChoices = ["http://datasette-private/" "https://datasette-public.owid.io/"]
+const datasetteUrlChoices = ["https://datasette-public.owid.io/"]
 
 const default = {
-    datasetteUrl: "http://datasette-private/"
+    datasetteUrl: "https://datasette-public.owid.io/"
     apiUrl: "https://api.ourworldindata.org/v1/indicators/"
     cfUserId: null
     siteUrl: "https://ourworldindata.org/"
