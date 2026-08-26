@@ -24,3 +24,21 @@ export module site.nu
 export module tailscale.nu
 export module spaces.nu
 export module redirects.nu
+
+# As of Nushell 0.114.0, `use owid` no longer implicitly imports the
+# submodules exported above, so `owid api metadata` etc. stopped resolving
+# ("extra positional argument" against `main`). Re-export each submodule's
+# contents explicitly to restore `owid <module> <command>` syntax.
+# https://www.nushell.sh/blog/2026-07-04-nushell_v0_114_0.html
+export use api.nu
+export use cache.nu
+export use chart.nu
+export use configuration.nu
+export use datasette.nu
+export use indicator.nu
+export use mysql.nu
+export use r2.nu
+export use site.nu
+export use tailscale.nu
+export use spaces.nu
+export use redirects.nu
